@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canva-Inspired Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --canva-primary: #00C4CC;
+            --canva-secondary: #2B4CFF;
+            --canva-dark: #2A2A2A;
+            --canva-light: #F5F5F5;
+            --canva-white: #FFFFFF;
+            --canva-gray: #8A8A8A;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--canva-light);
+        }
+        .canva-gradient-bg {
+            background: linear-gradient(135deg, var(--canva-primary) 0%, var(--canva-secondary) 100%);
+        }
+        .canva-input {
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+        }
+        .canva-input:focus {
+            border-color: var(--canva-primary);
+            box-shadow: 0 0 0 2px rgba(0, 196, 204, 0.2);
+        }
+        .canva-btn {
+            transition: all 0.2s ease;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .canva-btn-primary {
+            background-color: var(--canva-primary);
+        }
+        .canva-btn-primary:hover {
+            background-color: #00B4BA;
+            transform: translateY(-1px);
+        }
+        .canva-btn-secondary {
+            background-color: var(--canva-white);
+            color: var(--canva-dark);
+            border: 1px solid #E0E0E0;
+        }
+        .canva-btn-secondary:hover {
+            background-color: #F0F0F0;
+            transform: translateY(-1px);
+        }
+        .canva-card {
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+        }
+        .canva-divider {
+            background: linear-gradient(to right, transparent, #E0E0E0, transparent);
+            height: 1px;
+        }
+        .canva-link {
+            color: var(--canva-primary);
+            font-weight: 500;
+        }
+        .canva-link:hover {
+            text-decoration: underline;
+        }
+        .floating-label {
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+        .canva-input:focus + .floating-label,
+        .canva-input:not(:placeholder-shown) + .floating-label {
+            transform: translateY(-24px) scale(0.9);
+            color: var(--canva-primary);
+        }
+        /* Set r.jpeg as background image for the hero or signup section */
+        .hero, .signup-section {
+          background: url('/task3/R.jpeg') no-repeat center center fixed;
+          background-size: cover;
+        }
+    </style>
+</head>
+<body class="h-full flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Login Card -->
+        <div class="canva-card bg-white overflow-hidden">
+            <!-- Gradient Header -->
+            <div class="canva-gradient-bg py-6 px-8 text-center">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto mb-3">
+                    <path d="M20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40Z" fill="white"/>
+                    <path d="M20.0002 36.6667C29.2049 36.6667 36.6668 29.2048 36.6668 20C36.6668 10.7953 29.2049 3.33337 20.0002 3.33337C10.7954 3.33337 3.3335 10.7953 3.3335 20C3.3335 29.2048 10.7954 36.6667 20.0002 36.6667Z" fill="#00C4CC"/>
+                    <path d="M20.0002 33.3334C27.3639 33.3334 33.3335 27.3638 33.3335 20C33.3335 12.6362 27.3639 6.66671 20.0002 6.66671C12.6364 6.66671 6.66683 12.6362 6.66683 20C6.66683 27.3638 12.6364 33.3334 20.0002 33.3334Z" fill="white"/>
+                    <path d="M20.0002 30C25.5229 30 30.0002 25.5228 30.0002 20C30.0002 14.4772 25.5229 10 20.0002 10C14.4774 10 10.0002 14.4772 10.0002 20C10.0002 25.5228 14.4774 30 20.0002 30Z" fill="#2B4CFF"/>
+                </svg>
+                <h1 class="text-2xl font-bold text-white">Welcome to Canva</h1>
+                <p class="text-white/90 mt-1">Log in to your account to continue designing</p>
+            </div>
+            
+            <!-- Login Form -->
+            <div class="p-8">
+                <!-- Error Message (hidden by default) -->
+                <div id="error-message" class="hidden mb-4 p-3 bg-red-50 text-red-600 rounded-lg text-sm"></div>
+                
+                <form id="loginForm" class="space-y-5">
+                    <!-- Email Field -->
+                    <div class="relative">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="canva-input w-full px-4 py-3 focus:outline-none"
+                            placeholder=" "
+                            required
+                        >
+                        <label for="email" class="floating-label absolute left-4 top-3 text-gray-500">Email Address</label>
+                    </div>
+                    
+                    <!-- Password Field -->
+                    <div class="relative">
+                        <input 
+                            type="password" 
+                            id="password" 
+                            class="canva-input w-full px-4 py-3 focus:outline-none"
+                            placeholder=" "
+                            required
+                        >
+                        <label for="password" class="floating-label absolute left-4 top-3 text-gray-500">Password</label>
+                        <button type="button" class="absolute right-4 top-3 text-sm text-canva-primary font-medium" id="showPassword">Show</button>
+                    </div>
+                    
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input 
+                                type="checkbox" 
+                                id="rememberMe"
+                                class="w-4 h-4 border-gray-300 rounded text-canva-primary focus:ring-canva-primary"
+                            >
+                            <label for="rememberMe" class="ml-2 text-sm text-gray-600">Remember me</label>
+                        </div>
+                        <a href="#" class="text-sm canva-link">Forgot password?</a>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="canva-btn canva-btn-primary w-full py-3 px-4 text-white font-medium">
+                        Sign In
+                    </button>
+                    
+                    <!-- Divider -->
+                    <div class="relative flex items-center justify-center">
+                        <div class="canva-divider w-full"></div>
+                        <span class="absolute bg-white px-2 text-sm text-gray-500">OR</span>
+                    </div>
+                    
+                    <!-- Social Login -->
+                    <button type="button" class="canva-btn canva-btn-secondary w-full py-3 px-4 font-medium flex items-center justify-center">
+                        <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 5C13.6167 5 15.1013 5.53053 16.2863 6.41471C17.7579 7.5157 18.75 9.36511 18.75 11.4286C18.75 15.024 15.6429 17.8571 12 17.8571C8.35714 17.8571 5.25 15.024 5.25 11.4286C5.25 9.36511 6.24213 7.5157 7.71371 6.41471C8.89872 5.53053 10.3833 5 12 5Z" fill="#4285F4"/>
+                            <path d="M12 15.8571C13.7679 15.8571 15.2143 14.4107 15.2143 12.6429C15.2143 10.875 13.7679 9.42857 12 9.42857C10.2321 9.42857 8.78571 10.875 8.78571 12.6429C8.78571 14.4107 10.2321 15.8571 12 15.8571Z" fill="#34A853"/>
+                            <path d="M12 5C10.3833 5 8.89872 5.53053 7.71371 6.41471C6.24213 7.5157 5.25 9.36511 5.25 11.4286C5.25 15.024 8.35714 17.8571 12 17.8571V5Z" fill="#EA4335"/>
+                            <path d="M12 5C13.6167 5 15.1013 5.53053 16.2863 6.41471C17.7579 7.5157 18.75 9.36511 18.75 11.4286C18.75 15.024 15.6429 17.8571 12 17.8571V5Z" fill="#FBBC05"/>
+                        </svg>
+                        Continue with Google
+                    </button>
+                </form>
+                
+                <!-- Sign Up Link -->
+                <div class="mt-6 text-center text-sm text-gray-600">
+                    Don't have an account? <a href="#" class="canva-link">Sign up</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Links -->
+        <div class="mt-6 text-center text-xs text-gray-500">
+            <a href="#" class="hover:underline">Terms of Use</a> • 
+            <a href="#" class="hover:underline">Privacy Policy</a> • 
+            <a href="#" class="hover:underline">Help Center</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show/Hide Password
+            const showPasswordBtn = document.getElementById('showPassword');
+            const passwordInput = document.getElementById('password');
+            
+            showPasswordBtn.addEventListener('click', function() {
+                if (passwordInput.type === 'password') {
+                    passwordInput.type = 'text';
+                    showPasswordBtn.textContent = 'Hide';
+                } else {
+                    passwordInput.type = 'password';
+                    showPasswordBtn.textContent = 'Show';
+                }
+            });
+            
+            // Form Submission
+            const loginForm = document.getElementById('loginForm');
+            const errorMessage = document.getElementById('error-message');
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const rememberMe = document.getElementById('rememberMe').checked;
+                
+                // Clear previous errors
+                errorMessage.classList.add('hidden');
+                
+                // Validate inputs
+                if (!email || !password) {
+                    showError('Please fill in all fields');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    showError('Please enter a valid email address');
+                    return;
+                }
+                
+                // Simulate AJAX request to backend
+                simulateLoginRequest(email, password, rememberMe);
+            });
+            
+            function showError(message) {
+                errorMessage.textContent = message;
+                errorMessage.classList.remove('hidden');
+            }
+            
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            function simulateLoginRequest(email, password, rememberMe) {
+                // In a real implementation, this would be a fetch or axios call to your backend
+                console.log('Simulating login request:');
+                console.log('Email:', email);
+                console.log('Password:', password);
+                console.log('Remember Me:', rememberMe);
+                
+                // Simulate response after 1.5 seconds
+                setTimeout(() => {
+                    // This would parse the actual response from your backend
+                    // For demo, let's assume successful login
+                    const success = true; // Change to false to see error
+                    
+                    if (success) {
+                        // On successful login, redirect or perform other actions
+                        alert('Login successful!\n(Note: For full implementation, connect to your backend)');
+                        window.location.href = 'dashboard.html'; // Redirect to dashboard
+                    } else {
+                        showError('Invalid email or password. Please try again.');
+                    }
+                }, 1500);
+            }
+        });
+    </script>
+</body>
+</html>
