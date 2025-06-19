@@ -38,5 +38,5 @@ A sleek, responsive login page built with multiple technologies, showcasing both
 
 ## Demo 💻
 ![1](Screenshot%202025-06-19%20232359.png)
-
+![](Screenshot%202025-06-19%20232409.png)
 
